@@ -11,7 +11,7 @@ export const seed = async (knex: Knex): Promise<void> => {
 
   await knex(config.tables.TB_USERS).insert({
     phone:    '+998945717327',
-    password: hashedPassword,
+    password_hash: hashedPassword,
     username: 'ibrohimov7327',
     role:     'admin',
     status:   'active',

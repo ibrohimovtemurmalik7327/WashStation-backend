@@ -1,0 +1,39 @@
+import { Response } from "express";
+
+import { IServiceResponse } from "../types/common.types";
+
+const ERROR_STATUS: Record<string, number> = {
+  // Validation
+  VALIDATION_ERROR: 400,
+
+  // Not found
+  USER_NOT_FOUND: 404,
+
+  // Conflict
+  CONFLICT: 409,
+  USERNAME_CONFLICT: 409,
+  PHONE_CONFLICT: 409,
+  USER_ALREADY_INACTIVE: 409,
+
+  // Server
+  INTERNAL_ERROR: 500,
+};
+
+const sendResponse = <T>(res: Response, result: IServiceResponse<T>, successStatus = 200) => {
+    if (!result || result.success !== true) {
+        const errorCode = result?.error || 'INTERNAL_ERROR';
+        const status = ERROR_STATUS[errorCode] || 500;
+
+        return res.status(status).json({
+            success: false,
+            error: errorCode
+        });
+    }
+
+    return res.status(successStatus).json({
+        success: true,
+        data: result.data
+    });
+};
+
+export default sendResponse;

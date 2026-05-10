@@ -4,14 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --exec ts-node src/app.ts",
+    "dev": "nodemon --exec ts-node src/server.ts",
     "build": "tsc",
-    "start": "node dist/app.js",
+    "start": "node dist/server.js",
 
     "migrate:latest": "knex --knexfile src/db/knexfile.ts migrate:latest",
     "migrate:rollback": "knex --knexfile src/db/knexfile.ts migrate:rollback",
+    "migrate:rollback:all": "knex --knexfile src/db/knexfile.ts migrate:rollback --all",
     "migrate:make": "knex --knexfile src/db/knexfile.ts migrate:make",
-
+    
     "seed:run": "knex --knexfile src/db/knexfile.ts seed:run",
     "seed:make": "knex --knexfile src/db/knexfile.ts seed:make"
   },
@@ -24,6 +25,7 @@
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "joi": "^18.2.1",
     "jsonwebtoken": "^9.0.3",
     "knex": "^3.2.10",
     "mysql2": "^3.22.3"
