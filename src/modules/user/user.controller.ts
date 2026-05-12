@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 
 import userService from "./user.service";
-import sendResponse from "../../helpers/sendResponse.helper";
+import sendResponse from "../../helpers/sendResponse";
 
 class UserController {
     createUser = async (req: Request, res: Response): Promise<Response> => {

@@ -59,7 +59,6 @@ const config = {
     TB_BOOKING_MACHINES: 'tb_booking_machines',
     TB_PAYMENTS: 'tb_payments',
     TB_TICKETS: 'tb_tickets',
-    TB_OTPS: 'tb_otps'
   }
 };
 

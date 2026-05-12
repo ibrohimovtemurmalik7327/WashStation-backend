@@ -99,6 +99,21 @@ class UserModel {
 
     };
 
+    changeUserPassword = async (id: number, password_hash: string, trx?: Knex.Transaction): Promise<IPublicUser> => {
+
+        const query = trx || db;
+
+        await query(TB_USERS)
+        .where({ id })
+        .update({
+            password_hash,
+            updated_at: query.fn.now()
+        });
+
+        return this.getUserById(id, trx) as Promise<IPublicUser>;
+
+    };
+
     deactivateUser = async (id: number, trx?: Knex.Transaction): Promise<IPublicUser> => {
         
         const query = trx || db;

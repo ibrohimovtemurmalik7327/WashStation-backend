@@ -9,7 +9,7 @@ export enum UserStatus {
     INACTIVE = 'inactive'
 }
 
-//DB types
+//Entity
 export interface IUser {
     id: number,
     username: string,
