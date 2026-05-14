@@ -3,44 +3,48 @@ import { Response } from "express";
 import { IServiceResponse } from "../types/common.types";
 
 const ERROR_STATUS: Record<string, number> = {
-  // Validation
+
+  // Generic
   VALIDATION_ERROR: 400,
   BAD_REQUEST: 400,
-  INCORRECT_PASSWORD: 400,
+  INTERNAL_ERROR: 500,
 
   // Auth
   UNAUTHORIZED: 401,
   TOKEN_MISSING: 401,
   TOKEN_INVALID: 401,
   TOKEN_EXPIRED: 401,
-
-  // Forbidden
-  FORBIDDEN: 403,
-  USER_INACTIVE: 403,
-
-  // Not found
-  USER_NOT_FOUND: 404,
-
-  // Conflict
-  CONFLICT: 409,
-  USERNAME_CONFLICT: 409,
-  PHONE_CONFLICT: 409,
-  USER_ALREADY_INACTIVE: 409,
-  ACTIVE_TICKET_EXISTS: 409,
-  TICKET_NOT_PENDING: 409,
+  INVALID_CREDENTIALS: 401,
+  INCORRECT_PASSWORD: 400,
   SAME_PASSWORD: 409,
-
-  // Ticket errors
+  ACTIVE_TICKET_EXISTS: 409,
   TICKET_NOT_FOUND: 404,
+  TICKET_NOT_PENDING: 409,
   TICKET_EXPIRED: 410,
   INVALID_CODE: 422,
   TOO_MANY_ATTEMPTS: 429,
 
-  // Credentials
-  INVALID_CREDENTIALS: 401,
+  // User
+  USER_NOT_FOUND: 404,
+  USER_INACTIVE: 403,
+  USER_ALREADY_INACTIVE: 409,
+  USERNAME_CONFLICT: 409,
+  PHONE_CONFLICT: 409,
+  CONFLICT: 409,
 
-  // Server
-  INTERNAL_ERROR: 500,
+  // Branch
+  BRANCH_NOT_FOUND: 404,
+  BRANCH_INACTIVE: 403,
+  BRANCH_PHONE_CONFLICT: 409,
+
+  // Machine
+  MACHINE_NOT_FOUND: 404,
+  MACHINE_INACTIVE: 403,
+  MACHINE_NAME_CONFLICT: 409,
+
+  // Forbidden
+  FORBIDDEN: 403,
+
 };
 
 const sendResponse = <T>(res: Response, result: IServiceResponse<T>, successStatus = 200) => {

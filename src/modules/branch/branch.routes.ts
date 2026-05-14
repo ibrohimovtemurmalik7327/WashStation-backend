@@ -19,6 +19,12 @@ router.post(
 );
 
 router.get(
+    '/',
+    roleRequired(UserRole.ADMIN),
+    branchController.getBranches
+);
+
+router.get(
     '/active',
     roleRequired(UserRole.ADMIN, UserRole.USER),
     branchController.getActiveBranches
@@ -29,12 +35,6 @@ router.get(
     roleRequired(UserRole.ADMIN),
     validate(idParamSchema, 'params'),
     branchController.getBranch
-);
-
-router.get(
-    '/',
-    roleRequired(UserRole.ADMIN),
-    branchController.getBranches
 );
 
 router.patch(
