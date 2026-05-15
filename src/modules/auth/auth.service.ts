@@ -15,7 +15,7 @@ import {
     TicketStatus } from "./auth.types";
 import { IServiceResponse } from "../../types/common.types";
 import userModel from "../user/user.model";
-import { generateAccessToken, generateOtp, isExpired } from "../../helpers/authHelpers";
+import { generateAccessToken, generateOtp, isExpired } from "../../helpers/authHelper";
 import { IPublicUser, UserStatus } from "../user/user.types";
 
 const BCRYPT_COST = config.bcrypt.cost || 10;

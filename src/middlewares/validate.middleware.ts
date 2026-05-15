@@ -19,7 +19,12 @@ export const validate = (schema: Joi.ObjectSchema, property: 'body' | 'params' |
             return;
         }
 
-        req[property] = value;
+        if (property === 'query') {
+            Object.assign(req.query, value);
+        } else {
+            req[property] = value;
+        }
+
         next();
     };
 };

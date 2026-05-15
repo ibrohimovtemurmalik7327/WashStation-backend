@@ -7,11 +7,7 @@ dotenv.config({
 
 const must = (name: string): string => {
   const value = process.env[name];
-
-  if (!value) {
-    throw new Error(`Missing required env variable: ${name}`);
-  }
-
+  if (!value) throw new Error(`Missing required env variable: ${name}`);
   return value;
 };
 
@@ -24,15 +20,15 @@ const config = {
   },
 
   db: {
-    host: process.env.DB_HOST || '127.0.0.1',
-    port: Number(process.env.DB_PORT || 3306),
-    user: process.env.DB_USER || 'root',
+    host:     process.env.DB_HOST     || '127.0.0.1',
+    port:     Number(process.env.DB_PORT || 3306),
+    user:     process.env.DB_USER     || 'root',
     password: process.env.DB_PASSWORD || '',
-    database: process.env.DB_NAME || 'db_laundry'
+    database: process.env.DB_NAME     || 'db_laundry'
   },
 
   jwt: {
-    secret: must('JWT_SECRET'),
+    secret:    must('JWT_SECRET'),
     expiresIn: process.env.JWT_EXPIRES_IN || '1h'
   },
 
@@ -41,25 +37,32 @@ const config = {
   },
 
   otp: {
-    length: Number(process.env.AUTH_OTP_LENGTH || 6),
-    ttl: Number(process.env.AUTH_OTP_TTL_MS || 300000),
+    length:      Number(process.env.AUTH_OTP_LENGTH      || 6),
+    ttl:         Number(process.env.AUTH_OTP_TTL_MS      || 300000),
     maxAttempts: Number(process.env.AUTH_OTP_MAX_ATTEMPTS || 5)
   },
 
+  billing: {
+    pricePerKg: Number(process.env.PRICE_PER_KG || 5000)
+  },
+
   booking: {
-    WASH_MINUTES: Number(process.env.BOOKING_WASH_MINUTES || 30),
-    BUFFER_MINUTES: Number(process.env.BOOKING_BUFFER_MINUTES || 10)
+    durationMinutes: Number(process.env.WASH_DURATION_MINUTES    || 60),
+    intervalMinutes: Number(process.env.BOOKING_INTERVAL_MINUTES || 10),
+    maxHours:        Number(process.env.MAX_BOOKING_HOURS        || 4),
+    businessStart:   process.env.BUSINESS_HOURS_START            || '09:00',
+    businessEnd:     process.env.BUSINESS_HOURS_END              || '21:00',
   },
 
   tables: {
-    TB_USERS: 'tb_users',
-    TB_BRANCHES: 'tb_branches',
-    TB_MACHINES: 'tb_machines',
-    TB_BOOKINGS: 'tb_bookings',
+    TB_USERS:            'tb_users',
+    TB_TICKETS:          'tb_tickets',
+    TB_BRANCHES:         'tb_branches',
+    TB_MACHINES:         'tb_machines',
+    TB_BOOKINGS:         'tb_bookings',
     TB_BOOKING_MACHINES: 'tb_booking_machines',
-    TB_PAYMENTS: 'tb_payments',
-    TB_TICKETS: 'tb_tickets',
-  }
+  },
+
 };
 
 export default config;
