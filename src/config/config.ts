@@ -61,8 +61,14 @@ const config = {
     TB_MACHINES:         'tb_machines',
     TB_BOOKINGS:         'tb_bookings',
     TB_BOOKING_MACHINES: 'tb_booking_machines',
+    TB_PAYMENTS:         'tb_payments'
   },
 
+  click: {
+    serviceId:  Number(process.env.CLICK_SERVICE_ID  || 0),
+    merchantId: Number(process.env.CLICK_MERCHANT_ID || 0),
+    secretKey:  process.env.CLICK_SECRET_KEY || 'test_secret',
+  }
 };
 
 export default config;

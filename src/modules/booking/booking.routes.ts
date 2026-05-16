@@ -15,13 +15,6 @@ const router = express.Router();
 
 // User
 router.post(
-    '/slots',
-    roleRequired(UserRole.USER, UserRole.ADMIN),
-    validate(getSlotsSchema),
-    bookingController.getSlots
-);
-
-router.post(
     '/',
     roleRequired(UserRole.USER, UserRole.ADMIN),
     validate(createBookingSchema),
